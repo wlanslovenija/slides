@@ -1,0 +1,179 @@
+\documentclass[]{beamer}
+\mode<presentation>
+{
+% use attribute "dark" for dark theme
+% use attribute "contrast" for maximum text contrast
+\usetheme[]{wlansi}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+}  
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{xmpmulti}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{ifthen}
+\usepackage{type1ec}
+\usepackage{concrete}
+\DeclareFontFamily{T1}{ccr}{}
+\DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
+\DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
+\DeclareFontShape{T1}{ccr}{m}{it}{<->eoti10}{}
+\DeclareFontShape{T1}{ccr}{m}{sc}{<->eocc10}{}
+\DeclareFontShape{T1}{ccr}{bx}{n}{<->ssub*cmr/bx/n}{}
+\DeclareFontShape{T1}{ccr}{bx}{sl}{<->ssub*cmr/bx/sl}{}
+\DeclareFontShape{T1}{ccr}{bx}{it}{<->ssub*cmr/bx/it}{}
+\DeclareFontShape{T1}{ccr}{sbc}{n}{<->ssubf*ecssdc10}{}
+\usepackage[T1]{fontenc}
+\renewcommand{\sfdefault}{\rmdefault}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\bfdefault}{m}
+\newcommand{\nodewatcher}{\emph{nodewatcher }}
+\newcommand{\wlanslovenija}{\emph{wlan slovenija }}
+
+\newcommand{\ifstrempty}[3]{%
+\def\reallyempty{}%
+\def\ifarg{#1}%
+\ifx\ifarg\reallyempty%
+{#2}
+\else
+{#3}
+\fi%
+}
+
+\newcommand{\wrapframe}[1]{
+\begin{frame}
+ #1
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newcommand{\simpleslide}[3]{\wrapframe{
+\ifstrempty{#1}{\vbox{ \ } 
+
+}{
+{\footnotesize #1}
+} \vfill
+
+\begin{center}
+#2
+\end{center}
+\vfill
+\ifstrempty{#3}{ \ }{
+\begin{flushright}
+{\footnotesize #3}
+\end{flushright}
+}
+}}
+
+\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\begin{center}
+\ifthenelse{\equal{#1}{width}}{
+\includegraphics[width=\pwidth]{#2}}{
+\ifthenelse{\equal{#1}{height}}{
+\includegraphics[height=\pheight]{#2}}{
+\includegraphics{#2}}}
+\\ {\footnotesize #3}
+\end{center}}
+}
+
+\newcommand{\fullslideimage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+
+\newcommand{\rightfooter}[1]{\vfill\hfill #1}
+
+\newlength{\pheight}
+\newlength{\pwidth}
+\setlength{\pheight}{0.6\paperheight}
+\setlength{\pwidth}{0.8\paperwidth}
+
+\title{Popularne brezžične komunikacije}
+
+%\subtitle {Sežana, 23.6.2012}
+
+%\author{Luka Čehovin}
+
+%\institute{wlan slovenija}
+
+\date[] {1.0}
+
+\begin{document}
+
+% makes a title slide
+\maketitle
+
+\simpleslide{Popularne brezžične komunikacijske tehnologije.}{
+WiFi\\
+GSM\\
+DVB-T\\
+PacketRadio\\
+GPS, Glonassis, Galileo\\
+APRS\\
+}{Vsakdanja uporaba.}
+
+\simpleslide{WiFi}{
+802.11 standard\\
+2.4GHz, 5GHz, 60GHz?\\
+Internet of things - IoT\\
+}{}
+
+\simpleslide{GSM}{
+900MHz (EU)\\
+GSM,UMTS,3G,4G LTE\\
+do 300Mbps/70Mbps\\
+}{}
+\simpleslideimage[height]{clipart/cellular.jpg}{GSM omrežje}
+
+\simpleslide{DVB-T}{
+400MHz-800MHz\\
+19.9Mbps
+}{}
+\simpleslideimage[height]{clipart/dvbtmuxA.jpg}{Pokritost Slovenije, multiplex A}
+
+\simpleslide{Packet radio}{
+večinoma radioamaterska uporaba\\
+AX.25, NBP\\
+1.2Mbps, 2.4Mbps
+}{}
+\simpleslideimage[height]{clipart/packet.jpg}{Pokritost Slovenije, 2001}
+
+\simpleslide{GPS, Glonassis, Galileo}{
+javna navigacija\\
+komercialna navigacija\\
+vladna/voljaška navigacija\\
+točni čas\\
+1.2GHz-1.7GHz\\
+}{}
+\simpleslideimage[height]{clipart/baselineGPS.png}{Svetovna pokritost GPS.}
+\simpleslideimage[height]{clipart/failed9GPS.png}{Svetovna pokritost GPS z 9 manjkajočimi sateliti.}
+
+\simpleslide{APRS}{
+Automatic Position Reporting System\\
+GPS + radijska postaja 144.8MHz\\
+Repetitorska mreža na svetovni ravni.\\
+}{}
+\simpleslideimage[height]{clipart/aprsslo.png}{APRS uporabniki v Sloveniji.}
+
+
+\end{document}

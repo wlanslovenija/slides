@@ -1,0 +1,235 @@
+\documentclass[]{beamer}
+\mode<presentation>
+{
+% use attribute "dark" for dark theme
+% use attribute "contrast" for maximum text contrast
+\usetheme[]{wlansi}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+}  
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{xmpmulti}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{ifthen}
+\usepackage{type1ec}
+\usepackage{concrete}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,decorations.pathreplacing,decorations.text,shapes,calc,fit}
+\DeclareFontFamily{T1}{ccr}{}
+\DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
+\DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
+\DeclareFontShape{T1}{ccr}{m}{it}{<->eoti10}{}
+\DeclareFontShape{T1}{ccr}{m}{sc}{<->eocc10}{}
+\DeclareFontShape{T1}{ccr}{bx}{n}{<->ssub*cmr/bx/n}{}
+\DeclareFontShape{T1}{ccr}{bx}{sl}{<->ssub*cmr/bx/sl}{}
+\DeclareFontShape{T1}{ccr}{bx}{it}{<->ssub*cmr/bx/it}{}
+\DeclareFontShape{T1}{ccr}{sbc}{n}{<->ssubf*ecssdc10}{}
+\usepackage[T1]{fontenc}
+\renewcommand{\sfdefault}{\rmdefault}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\bfdefault}{m}
+\newcommand{\nodewatcher}{\emph{nodewatcher }}
+\newcommand{\wlanslovenija}{\emph{wlan slovenija }}
+
+\newcommand{\ifstrempty}[3]{%
+\def\reallyempty{}%
+\def\ifarg{#1}%
+\ifx\ifarg\reallyempty%
+{#2}
+\else
+{#3}
+\fi%
+}
+
+\newcommand{\wrapframe}[1]{
+\begin{frame}
+ #1
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newcommand{\simpleslide}[3]{\wrapframe{
+\ifstrempty{#1}{\vbox{ \ } 
+
+}{
+{\footnotesize #1}
+} \vfill
+
+\begin{center}
+#2
+\end{center}
+\vfill
+\ifstrempty{#3}{ \ }{
+\begin{flushright}
+{\footnotesize #3}
+\end{flushright}
+}
+}}
+
+\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\begin{center}
+\ifthenelse{\equal{#1}{width}}{
+\includegraphics[width=\pwidth]{#2}}{
+\ifthenelse{\equal{#1}{height}}{
+\includegraphics[height=\pheight]{#2}}{
+\includegraphics{#2}}}
+\\ {\footnotesize #3}
+\end{center}}
+}
+
+\newcommand{\fullslideimage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+
+\newcommand{\rightfooter}[1]{\vfill\hfill #1}
+
+\newlength{\pheight}
+\newlength{\pwidth}
+\setlength{\pheight}{0.6\paperheight}
+\setlength{\pwidth}{0.8\paperwidth}
+
+\title{WiFi - Wireless Fidelity 802.11}
+
+%\subtitle {Sežana, 23.6.2012}
+
+%\author{Luka Čehovin}
+
+%\institute{wlan slovenija}
+
+\date[] {1.0}
+
+\begin{document}
+
+% makes a title slide
+\maketitle
+
+\simpleslide{kaj}{
+\begin{itemize}
+\item strojna oprema
+\item zakonske omejitve
+\item načrtovanje povezav
+\item delovanje WiFija in TCP/IP
+\end{itemize}
+}{}
+
+\simpleslideimage[height]{clipart/wr741nd-4v20-4.jpg}{Router TP-LINK WR741ND}
+
+\simpleslide{WR741ND}{
+\begin{itemize}
+\item CPU - Atheros AR9331 @ 350 MHz
+\item RAM - 32MB
+\item Flash - 4MB
+\item LAN - 4x 100Mbps Auto MDI/MDIX
+\item WAN - 1x 100Mbps Auto MDI/MDIX
+\item WiFi - 802.11 b/g/n 150Mbps (130Mbps real) 20dBm - 100mW @ 2.4GHz
+\end{itemize}
+}{}
+
+\simpleslideimage[height]{clipart/TP-LINK-serial.pdf}{Voltage level shifter}
+
+
+\simpleslide{Izbira lokacije in antene za \wlanslovenija točko. }{
+\begin{enumerate}
+\item lokacija z čim večjim vidnim poljem (streha, okenska polica, fasada,...)
+\item območje potencialnih uporabnik (naselja, parki, javne površine, hribi...)
+\item primerna antena glede na ovire (omni za streho, panel za fasado, yagi za usmerjene povezave)
+\item sodelovanje z drugimi uporabniki
+\end{enumerate}
+}{}
+
+
+\simpleslide{WiFi zakonodaja.}{
+\begin{itemize}
+\item omejena izotropsko ekvivalenta izsevana moč - EIRP router(dBm)+antena(dB)
+\item 20dBm EIRP @ 2.4GHz
+\item 23dBm EIRP @ 5150-5350 MHz indoor
+\item 30dBm EIRP @ 5475-5725 MHz
+\end{itemize}
+}{}
+
+\simpleslide{}{Veliko malih šepetalcev.}{Namesto velikih oddajnih stolpov.}
+
+\tikzstyle{vertex}=[circle,text=blue!75,fill=blue!25,minimum size=20pt,inner sep=0pt]
+\tikzstyle{selected vertex} = [vertex, fill=red!24, text=red]
+\tikzstyle{edge} = [draw=black,thick,-]
+\tikzstyle{weight} = [font=\scriptsize]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
+\tikzstyle{destination} = [vertex,fill=orange!24, text=orange]
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\simpleslide{WiFi in komunikacija IP.}{Omrežne plasti.}{Lego kocke.}
+
+\simpleslideimage[height]{clipart/legostack.jpg}{}
+
+\simpleslide{Modularnost.}{Razširljivost.}{Interopabilnost.}
+
+\simpleslide{WiFi. Ethernet.}{Povezavna plast.}{Lokalno (vidno) območje.}
+
+\simpleslide{}{Internetna plast.}{Grafi.}
+
+\simpleslideimage[height]{clipart/network_topology.png}{Izsek grafa topologije \textit{wlan slovenija}}
+
+\simpleslide{Topologije.}{Dostopovne točke vs. mesh omrežje.}{}
+
+\simpleslide{\textit{wlan slovenija}.}{Mesh. Avtonomno omrežje.}{Del prepleta globalnih omrežij, Interneta.}
+
+\simpleslide{Usmerjanje na omrežjih IP.}{Dinamični usmerjevalni protokoli.}{Statično usmerjanje.}
+
+\simpleslide{OLSR.}{Dinamično usmerjanje v WiFi mesh omrežjih.}{Cene povezav, metrike in optimalne poti.}
+
+\simpleslide{}{
+
+\begin{tikzpicture}[scale=1.8, auto,swap]
+  \foreach \pos/\name in {{(0,2)/a}, {(2,1)/b}, {(4,1)/c},
+                         {(0,0)/d}, {(3,0)/e}, {(2,-1)/f}, {(4,-1)/g}}
+    \node[vertex] (\name) at \pos {$\name$};
+  
+  \node[destination] (g) at (4,-1) {$g$};
+  
+  % Connect vertices with edges and draw weights
+  \foreach \source/ \dest /\weight in {b/a/$1.0$, c/b/$1.0$, d/a/$1.21$, d/b/$2.33$,
+                                       e/b/$2.17$, e/c/$2.43$, e/d/$1.87$,
+                                       f/d/$7.81$, f/e/$3.20$,
+                                       g/e/$2.01$, g/f/$1.12$}
+      \path[edge] (\source) -- node[weight] {$\weight$} (\dest);
+  
+  \foreach \vertex in {a,d,e}
+    \path<2-> node[selected vertex] at (\vertex) {$\vertex$};
+  
+  \begin{pgfonlayer}{background}
+    \foreach \source / \dest in {a/d,d/e,e/g}
+      \path<2->[selected edge] (\source.center) -- (\dest.center);
+  \end{pgfonlayer}
+\end{tikzpicture}
+
+}{}
+
+\simpleslide{Transportna plast.}{Razbitje na aplikacije in spet potrditve...}{...ali pa tudi ne.}
+
+\simpleslide{}{Aplikacijski nivo.}{Najbližje uporabniku.}
+
+\end{document}

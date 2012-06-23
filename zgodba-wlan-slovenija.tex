@@ -1,0 +1,192 @@
+\documentclass[]{beamer}
+\mode<presentation>
+{
+% use attribute "dark" for dark theme
+% use attribute "contrast" for maximum text contrast
+\usetheme[]{wlansi}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+}  
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{xmpmulti}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{ifthen}
+\usepackage{type1ec}
+\usepackage{concrete}
+\DeclareFontFamily{T1}{ccr}{}
+\DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
+\DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
+\DeclareFontShape{T1}{ccr}{m}{it}{<->eoti10}{}
+\DeclareFontShape{T1}{ccr}{m}{sc}{<->eocc10}{}
+\DeclareFontShape{T1}{ccr}{bx}{n}{<->ssub*cmr/bx/n}{}
+\DeclareFontShape{T1}{ccr}{bx}{sl}{<->ssub*cmr/bx/sl}{}
+\DeclareFontShape{T1}{ccr}{bx}{it}{<->ssub*cmr/bx/it}{}
+\DeclareFontShape{T1}{ccr}{sbc}{n}{<->ssubf*ecssdc10}{}
+\usepackage[T1]{fontenc}
+\renewcommand{\sfdefault}{\rmdefault}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\bfdefault}{m}
+\newcommand{\nodewatcher}{\emph{nodewatcher }}
+\newcommand{\wlanslovenija}{\emph{wlan slovenija }}
+
+\newcommand{\ifstrempty}[3]{%
+\def\reallyempty{}%
+\def\ifarg{#1}%
+\ifx\ifarg\reallyempty%
+{#2}
+\else
+{#3}
+\fi%
+}
+
+\newcommand{\wrapframe}[1]{
+\begin{frame}
+ #1
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newcommand{\simpleslide}[3]{\wrapframe{
+\ifstrempty{#1}{\vbox{ \ } 
+
+}{
+{\footnotesize #1}
+} \vfill
+
+\begin{center}
+#2
+\end{center}
+\vfill
+\ifstrempty{#3}{ \ }{
+\begin{flushright}
+{\footnotesize #3}
+\end{flushright}
+}
+}}
+
+\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\begin{center}
+\ifthenelse{\equal{#1}{width}}{
+\includegraphics[width=\pwidth]{#2}}{
+\ifthenelse{\equal{#1}{height}}{
+\includegraphics[height=\pheight]{#2}}{
+\includegraphics{#2}}}
+\\ {\footnotesize #3}
+\end{center}}
+}
+
+\newcommand{\fullslideimage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+
+\newcommand{\rightfooter}[1]{\vfill\hfill #1}
+
+\newlength{\pheight}
+\newlength{\pwidth}
+\setlength{\pheight}{0.8\paperheight}
+\setlength{\pwidth}{0.8\paperwidth}
+
+\title{Zgodba \wlanslovenija}
+
+%\subtitle {Sežana, 23.6.2012}
+
+%\author{Luka Čehovin}
+
+%\institute{wlan slovenija}
+
+\date[] {1.0}
+
+\begin{document}
+
+% makes a title slide
+\maketitle
+
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\simpleslide{}{\emph{wlan slovenija} -- odprto brezžično omrežje Slovenije \\ http://wlan-si.net}{http://grow.wlan-si.net \\ http://dev.wlan-si.net}
+
+\simpleslide{Začetek.}{2006\\Predstavitev mesh omrežja FunkFeuer v Kiberpipi.\\Navdušenci pograbijo idejo.\\
+~\\
+2009\\
+\textit{wlan ljubljana} -- odprto brezžično omrežje Ljubljane \\ 28 točk, 13000 ne-unikatnih uporabnikov\\
+~\\
+2012\\
+\wlanslovenija -- odprto brezžično omrežje Slovenije \\
+150+ nodes, 178000 ne-unikatnih uporabnikov
+}{}
+
+
+\simpleslideimage[width]{clipart/growth.png}{Rast omrežja.}
+
+\simpleslide{Internetna povezljivost Slovenia.}{
+širokopasovni Internet (xDSL ali kableski) -- 60\% gospodinjstev -- '10\\ 
+FTTH v večjih mestih\\
+76\% populacije uporablja Internet\\
+500\% rast dostopnosti do širokopasovnega Interneta '05-'10\\
+slaba dostopnost v ruralnih obnočjih
+}{}
+
+\simpleslide{Težave.}{Višek širokopasovne kapacitete v mestih.\\
+Deljenje povezav za omogočanje dostopa na javnih površinah.\\
+Pomanjkanje širokopasovne infrastrukture v ruralnih območjih.\\
+Deljenje povezav za osnovni dostop.
+}{}
+
+\simpleslide{Neuspeh}{
+Občine v Halozah uvajajo spletne portale za občane.\\
+Velik del gospodinjstev nima možnosti širokopasovnega dostopa.\\
+~\\
+Prebivalci vzpostavijo svoje omrežje.\\
+}{Uspeh!}
+
+\simpleslideimage[width]{clipart/haloze.png}{Brezžično omrežje v Halozah.}
+
+\simpleslide{Cilji!}{
+Preprosto in učinkovito deljenje Interneta.\\
+Razvoj preprostih, učinkovitih in odprtokodnih rešitev.\\
+Promocija odprtih družbenih omrežij.\\
+Deljenje znanja.\\
+}{}
+
+\simpleslide{}{\emph{wlan slovenija} -- odprto brezžično omrežje Slovenije \\ http://wlan-si.net}{http://grow.wlan-si.net \\ http://dev.wlan-si.net}
+
+\simpleslide{Omrežje}{Mesh omrežje.}{Brezžično mesh omrežje.}
+
+\simpleslideimage[height]{clipart/slovenija.png}{}
+\simpleslideimage[height]{clipart/preplet.png}{}
+
+\simpleslide{Širjenje omrežja:}{Sodelovanje posameznikov.  \\ Deljenje lokacije. \\ Prispevanje denarja. \\ }{Prekomejna povezljivost.}
+\simpleslideimage[height]{clipart/PohorjeTestiranje.png}{}
+\simpleslide{Rezultati.}{Avtonomno omrežje.  \\ Neomejena povezljivost. \\Brezplačno. \\ }{Nov medij za komunikacije. }
+\simpleslideimage[width]{clipart/dilbert.jpg}{}
+\simpleslideimage[width]{clipart/awmn1}{AWMN Athenes}
+\simpleslideimage[width]{clipart/awmn2}{AWMN Athenes}
+
+
+\end{document}
+
+\simpleslide{}{}{}

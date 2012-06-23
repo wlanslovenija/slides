@@ -1,0 +1,148 @@
+\documentclass[]{beamer}
+\mode<presentation>
+{
+% use attribute "dark" for dark theme
+% use attribute "contrast" for maximum text contrast
+\usetheme[]{wlansi}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+}  
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{xmpmulti}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{ifthen}
+\usepackage{type1ec}
+\usepackage{concrete}
+\DeclareFontFamily{T1}{ccr}{}
+\DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
+\DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
+\DeclareFontShape{T1}{ccr}{m}{it}{<->eoti10}{}
+\DeclareFontShape{T1}{ccr}{m}{sc}{<->eocc10}{}
+\DeclareFontShape{T1}{ccr}{bx}{n}{<->ssub*cmr/bx/n}{}
+\DeclareFontShape{T1}{ccr}{bx}{sl}{<->ssub*cmr/bx/sl}{}
+\DeclareFontShape{T1}{ccr}{bx}{it}{<->ssub*cmr/bx/it}{}
+\DeclareFontShape{T1}{ccr}{sbc}{n}{<->ssubf*ecssdc10}{}
+\usepackage[T1]{fontenc}
+\renewcommand{\sfdefault}{\rmdefault}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\bfdefault}{m}
+\newcommand{\nodewatcher}{\emph{nodewatcher }}
+\newcommand{\wlanslovenija}{\emph{wlan slovenija }}
+
+\newcommand{\ifstrempty}[3]{%
+\def\reallyempty{}%
+\def\ifarg{#1}%
+\ifx\ifarg\reallyempty%
+{#2}
+\else
+{#3}
+\fi%
+}
+
+\newcommand{\wrapframe}[1]{
+\begin{frame}
+ #1
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newcommand{\simpleslide}[3]{\wrapframe{
+\ifstrempty{#1}{\vbox{ \ } 
+
+}{
+{\footnotesize #1}
+} \vfill
+
+\begin{center}
+#2
+\end{center}
+\vfill
+\ifstrempty{#3}{ \ }{
+\begin{flushright}
+{\footnotesize #3}
+\end{flushright}
+}
+}}
+
+\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\begin{center}
+\ifthenelse{\equal{#1}{width}}{
+\includegraphics[width=\pwidth]{#2}}{
+\ifthenelse{\equal{#1}{height}}{
+\includegraphics[height=\pheight]{#2}}{
+\includegraphics{#2}}}
+\\ {\footnotesize #3}
+\end{center}}
+}
+
+\newcommand{\fullslideimage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+
+\newcommand{\rightfooter}[1]{\vfill\hfill #1}
+
+\newlength{\pheight}
+\newlength{\pwidth}
+\setlength{\pheight}{0.5\paperheight}
+\setlength{\pwidth}{0.5\paperwidth}
+
+\title{Organska brezžična omrežja}
+
+\subtitle {Sežana, 23.6.2012}
+
+%\author{Luka Čehovin}
+
+%\institute{wlan slovenija}
+
+\date[] {1.0}
+
+\begin{document}
+
+% makes a title slide
+\maketitle
+
+\simpleslide{}{
+9h-12h
+   \begin{itemize}
+   \item Uvod v Organska brezžična omrežja
+   \item Duh pobude in zgodba \wlanslovenija
+   \item Osnove brezžičnih komunikacij
+   \item Predstavitev radioamaterstva \& SOTA
+   \end{itemize}
+   12h-13h
+   \begin{itemize}
+   \item Kosilo, prijava na praktični del.
+  \end{itemize}
+13h
+   \begin{itemize}
+   \item Popularne brezžične komunikacije
+   \item Vzpostavitev točk \wlanslovenija
+   \item Sodelovanje, vprašanja in prosta debata 
+\end{itemize}
+}{}
+
+\simpleslideimage[width]{sponzorji.png}{Sponzorji današnje delavnice.}
+
+\end{document}
