@@ -100,7 +100,6 @@
 \end{frame}
 }
 
-
 \newcommand{\rightfooter}[1]{\vfill\hfill #1}
 
 \newlength{\pheight}
@@ -110,51 +109,43 @@
 
 \title{Zgodba \wlanslovenija}
 
-%\subtitle {Sežana, 23.6.2012}
+%\subtitle{}
 
-%\author{Luka Čehovin}
+%\author{}
 
-%\institute{wlan slovenija}
+%\institute{}
 
-\date[] {1.0}
+\date[] {1.1}
 
 \begin{document}
 
 % makes a title slide
 \maketitle
 
-
 \pgfdeclarelayer{background}
 \pgfsetlayers{background,main}
 
-\simpleslide{}{\emph{wlan slovenija} -- odprto brezžično omrežje Slovenije \\ http://wlan-si.net}{http://grow.wlan-si.net \\ http://dev.wlan-si.net}
+\simpleslide{}{\wlanslovenija -- odprto brezžično omrežje Slovenije \\ http://wlan-si.net}{http://grow.wlan-si.net \\ http://dev.wlan-si.net}
 
-\simpleslide{Začetek.}{2006\\Predstavitev mesh omrežja FunkFeuer v Kiberpipi.\\Navdušenci pograbijo idejo.\\
-~\\
-2009\\
-\textit{wlan ljubljana} -- odprto brezžično omrežje Ljubljane \\ 28 točk, 13000 ne-unikatnih uporabnikov\\
-~\\
-2012\\
-\wlanslovenija -- odprto brezžično omrežje Slovenije \\
-150+ nodes, 178000 ne-unikatnih uporabnikov
-}{}
+\simpleslide{2006 -- Predstavitev mesh omrežja FunkFeuer v Kiberpipi. \\ Navdušenci pograbijo idejo.}
+{2009 -- \emph{wlan ljubljana} -- odprto brezžično omrežje Ljubljane \\ Poenostavitev in avtomatizacija postavitev točk. \\ 28 točk, 13000 ne-unikatnih uporabnikov}
+{2012 -- \wlanslovenija -- odprto brezžično omrežje Slovenije \\
+150+ točk, 178000 ne-unikatnih uporabnikov}
 
+\simpleslideimage[width]{clipart/growth.png}{Rast omrežja (v letu 2011).}
 
-\simpleslideimage[width]{clipart/growth.png}{Rast omrežja.}
+\simpleslide{Internetna povezljivost v Sloveniji.}{
+Širokopasovni Internet (xDSL ali kableski) -- 60 \% gospodinjstev -- '10 \\
+FTTH v večjih mestih \\
+76\% populacije uporablja Internet \\
+500\% rast dostopnosti do širokopasovnega Interneta '05-'10 \\
+slaba dostopnost v ruralnih obnočjih}{}
 
-\simpleslide{Internetna povezljivost Slovenia.}{
-širokopasovni Internet (xDSL ali kableski) -- 60\% gospodinjstev -- '10\\ 
-FTTH v večjih mestih\\
-76\% populacije uporablja Internet\\
-500\% rast dostopnosti do širokopasovnega Interneta '05-'10\\
-slaba dostopnost v ruralnih obnočjih
-}{}
+\simpleslide{}{Neizkoriščena širokopasovna infrastruktura v mestih.\\ $\downarrow$ \\
+Deljenje povezljivosti za omogočanje \\ dostopa na javnih površinah.}{}
 
-\simpleslide{Težave.}{Višek širokopasovne kapacitete v mestih.\\
-Deljenje povezav za omogočanje dostopa na javnih površinah.\\
-Pomanjkanje širokopasovne infrastrukture v ruralnih območjih.\\
-Deljenje povezav za osnovni dostop.
-}{}
+\simpleslide{}{Pomanjkanje širokopasovne infrastrukture v ruralnih območjih.\\ $\downarrow$ \\
+Deljenje povezljivosti za osnovni dostop.}{}
 
 \simpleslide{Neuspeh}{
 Občine v Halozah uvajajo spletne portale za občane.\\
@@ -186,7 +177,4 @@ Deljenje znanja.\\
 \simpleslideimage[width]{clipart/awmn1}{AWMN Athenes}
 \simpleslideimage[width]{clipart/awmn2}{AWMN Athenes}
 
-
 \end{document}
-
-\simpleslide{}{}{}
