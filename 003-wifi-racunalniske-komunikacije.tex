@@ -81,14 +81,10 @@
 }
 }}
 
-\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\newcommand{\simpleslideimage}[2]{\wrapframe{
 \begin{center}
-\ifthenelse{\equal{#1}{width}}{
-\includegraphics[width=\pwidth]{#2}}{
-\ifthenelse{\equal{#1}{height}}{
-\includegraphics[height=\pheight]{#2}}{
-\includegraphics{#2}}}
-\\ {\footnotesize #3}
+\includegraphics[width=0.8\paperwidth,height=0.6\paperheight,keepaspectratio]{#1}
+\\ {\footnotesize #2}
 \end{center}}
 }
 
@@ -106,7 +102,7 @@
 
 \newlength{\pheight}
 \newlength{\pwidth}
-\setlength{\pheight}{0.6\paperheight}
+\setlength{\pheight}{0.8\paperheight}
 \setlength{\pwidth}{0.8\paperwidth}
 
 \title{WiFi -- Wireless Fidelity 802.11}
@@ -133,7 +129,7 @@
 \end{itemize}
 }{}
 
-\simpleslideimage[height]{clipart/wr741nd-4v20-4.jpg}{Router TP-LINK WR741ND}
+\simpleslideimage{clipart/wr741nd-4v20-4.jpg}{Router TP-LINK WR741ND}
 
 \simpleslide{WR741ND}{
 \begin{itemize}
@@ -146,7 +142,7 @@
 \end{itemize}
 }{}
 
-\simpleslideimage[height]{clipart/TP-LINK-serial.pdf}{Voltage level shifter}
+\simpleslideimage{clipart/TP-LINK-serial.pdf}{Voltage level shifter}
 
 \simpleslide{Izbira lokacije in antene za \wlanslovenija točko. }{
 \begin{enumerate}
@@ -180,7 +176,7 @@
 
 \simpleslide{WiFi in komunikacija IP.}{Omrežne plasti.}{Lego kocke.}
 
-\simpleslideimage[height]{clipart/legostack.jpg}{}
+\simpleslideimage{clipart/legostack.jpg}{}
 
 \simpleslide{Modularnost.}{Razširljivost.}{Interopabilnost.}
 
@@ -188,7 +184,7 @@
 
 \simpleslide{}{Internetna plast.}{Grafi.}
 
-\simpleslideimage[height]{clipart/network_topology.png}{Izsek grafa topologije \textit{wlan slovenija}}
+\simpleslideimage{clipart/network_topology.png}{Izsek grafa topologije \textit{wlan slovenija}}
 
 \simpleslide{Topologije.}{Dostopovne točke vs. mesh omrežje.}{}
 

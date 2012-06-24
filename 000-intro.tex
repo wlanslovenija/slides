@@ -79,14 +79,10 @@
 }
 }}
 
-\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\newcommand{\simpleslideimage}[2]{\wrapframe{
 \begin{center}
-\ifthenelse{\equal{#1}{width}}{
-\includegraphics[width=\pwidth]{#2}}{
-\ifthenelse{\equal{#1}{height}}{
-\includegraphics[height=\pheight]{#2}}{
-\includegraphics{#2}}}
-\\ {\footnotesize #3}
+\includegraphics[width=0.8\paperwidth,height=0.6\paperheight,keepaspectratio]{#1}
+\\ {\footnotesize #2}
 \end{center}}
 }
 
@@ -101,11 +97,6 @@
 }
 
 \newcommand{\rightfooter}[1]{\vfill\hfill #1}
-
-\newlength{\pheight}
-\newlength{\pwidth}
-\setlength{\pheight}{0.5\paperheight}
-\setlength{\pwidth}{0.5\paperwidth}
 
 \title{Organska brezžična omrežja}
 
@@ -143,6 +134,6 @@
    \end{itemize}
 }{}
 
-\simpleslideimage[width]{supporters/sezana.png}{Podporniki današnje delavnice.}
+\simpleslideimage{supporters/sezana.png}{Podporniki današnje delavnice.}
 
 \end{document}

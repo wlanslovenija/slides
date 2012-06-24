@@ -79,14 +79,10 @@
 }
 }}
 
-\newcommand{\simpleslideimage}[3][width]{\wrapframe{
+\newcommand{\simpleslideimage}[2]{\wrapframe{
 \begin{center}
-\ifthenelse{\equal{#1}{width}}{
-\includegraphics[width=\pwidth]{#2}}{
-\ifthenelse{\equal{#1}{height}}{
-\includegraphics[height=\pheight]{#2}}{
-\includegraphics{#2}}}
-\\ {\footnotesize #3}
+\includegraphics[width=0.8\paperwidth,height=0.6\paperheight,keepaspectratio]{#1}
+\\ {\footnotesize #2}
 \end{center}}
 }
 
@@ -101,11 +97,6 @@
 }
 
 \newcommand{\rightfooter}[1]{\vfill\hfill #1}
-
-\newlength{\pheight}
-\newlength{\pwidth}
-\setlength{\pheight}{0.8\paperheight}
-\setlength{\pwidth}{0.8\paperwidth}
 
 \title{Kaj je \wlanslovenija omrežje?}
 
@@ -170,7 +161,7 @@ izmenjavi znanja in izkušenj ter skupnosti.}{}
 {2012 -- \wlanslovenija -- odprto brezžično omrežje Slovenije \\
 150+ točk, 180000 ne-unikatnih uporabnikov.}
 
-\simpleslideimage[width]{images/growth.png}{Rast omrežja (v letu 2011).}
+\simpleslideimage{images/growth.png}{Rast omrežja (v letu 2011).}
 
 \simpleslide{Internetna povezljivost v Sloveniji (2010).}{
 V 60 \% gospodinjstvih širokopasovni Internet (xDSL, kabelski). \\
@@ -221,7 +212,7 @@ Deljenje povezljivosti za osnovni dostop.}{}
 
 \simpleslide{Rezultati.}{Brezplačno.}{Za uporabo.}
 
-\simpleslideimage[width]{images/dilbert.jpg}{}
+\simpleslideimage{images/dilbert.jpg}{}
 
 \simpleslide{}{Zastavljeno okoli skupnosti.}{Vsakdo lahko sodeluje.}
 
@@ -261,8 +252,8 @@ Deljenje povezljivosti za osnovni dostop.}{}
 
 \fullslideimage{images/PohorjeTestiranje.png}
 
-\simpleslideimage[width]{images/awmn.png}{AWMN, 2400 točk (Atene, Grčija)}
+\simpleslideimage{images/awmn.png}{AWMN, 2400 točk (Atene, Grčija)}
 
-\simpleslideimage[width]{images/guifi.png}{guifi.net, 17000 točk (Španija)}
+\simpleslideimage{images/guifi.png}{guifi.net, 17000 točk (Španija)}
 
 \end{document}
