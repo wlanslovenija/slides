@@ -1,5 +1,5 @@
-Slides for *wlan slovenija* workshops
-=====================================
+Slides for *wlan slovenija* presentation (Slovenian)
+====================================================
 
 You can use ``make`` to generate PDFs of slides.
 
