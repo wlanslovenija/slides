@@ -1,5 +1,7 @@
-Slides for *wlan slovenija* workshops
-=====================================
+*wlan slovenija* slides
+=======================
+
+See different slide types in repository branches.
 
 You can use ``make`` to generate PDFs of slides.
 
