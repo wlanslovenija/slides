@@ -1,0 +1,190 @@
+\documentclass[]{beamer}
+\mode<presentation>
+{
+% use attribute "dark" for dark theme
+% use attribute "contrast" for maximum text contrast
+\usetheme[]{wlansi}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+}  
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{xmpmulti}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{ifthen}
+\usepackage{type1ec}
+\usepackage{concrete}
+\DeclareFontFamily{T1}{ccr}{}
+\DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
+\DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
+\DeclareFontShape{T1}{ccr}{m}{it}{<->eoti10}{}
+\DeclareFontShape{T1}{ccr}{m}{sc}{<->eocc10}{}
+\DeclareFontShape{T1}{ccr}{bx}{n}{<->ssub*cmr/bx/n}{}
+\DeclareFontShape{T1}{ccr}{bx}{sl}{<->ssub*cmr/bx/sl}{}
+\DeclareFontShape{T1}{ccr}{bx}{it}{<->ssub*cmr/bx/it}{}
+\DeclareFontShape{T1}{ccr}{sbc}{n}{<->ssubf*ecssdc10}{}
+\usepackage[T1]{fontenc}
+\renewcommand{\sfdefault}{\rmdefault}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\bfdefault}{m}
+\newcommand{\nodewatcher}{\emph{nodewatcher }}
+\newcommand{\wlanslovenija}{\emph{wlan slovenija }}
+
+\newcommand{\ifstrempty}[3]{%
+\def\reallyempty{}%
+\def\ifarg{#1}%
+\ifx\ifarg\reallyempty%
+{#2}
+\else
+{#3}
+\fi%
+}
+
+\newcommand{\wrapframe}[1]{
+\begin{frame}
+ #1
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newcommand{\simpleslide}[3]{\wrapframe{
+\ifstrempty{#1}{\vbox{ \ } 
+
+}{
+{\footnotesize #1}
+} \vfill
+
+\begin{center}
+#2
+\end{center}
+\vfill
+\ifstrempty{#3}{ \ }{
+\begin{flushright}
+{\footnotesize #3}
+\end{flushright}
+}
+}}
+
+\newcommand{\simpleslideimage}[2]{\wrapframe{
+\begin{center}
+\includegraphics[width=0.8\paperwidth,height=0.6\paperheight,keepaspectratio]{#1}
+\\ {\footnotesize #2}
+\end{center}}
+}
+
+\newcommand{\fullslideimage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+\newcommand{\rightfooter}[1]{\vfill\hfill #1}
+
+\title{Omrežje \wlanslovenija}
+
+\subtitle{Jernej Kos \\ SINOG 1.5}
+
+%\author{}
+
+%\institute{}
+
+\date[]{4.12.2014}
+
+\begin{document}
+
+% makes a title slide
+\maketitle
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\simpleslide{}{\wlanslovenija -- odprto brezžično omrežje Slovenije \\ https://wlan-si.net}{https://grow.wlan-si.net \\ https://dev.wlan-si.net}
+
+\simpleslide{}{Pobuda za izgradnjo odprtega brezžičnega \\
+omrežja po Sloveniji, temelječega na sodelovanju, \\
+izmenjavi znanja in izkušenj ter skupnosti.}{}
+
+\simpleslide{Organska rast omrežne infrastrukture.}{Izzivi.}{Koordinacija skupnosti.}
+
+\simpleslide{Omrežje.}{Mesh omrežje.}{Brezžično mesh omrežje.}
+
+\simpleslide{Omrežje.}{Povezljivost na katerikoli možen način.}{WiFi, Ethernet, L2TPv3, KORUZA...}
+
+\fullslideimage{clipart/shema-podolgovata.png}
+
+\fullslideimage{images/network_topology.png}
+
+\fullslideimage{images/node-map-slovenia.png}
+
+\fullslideimage{images/node-map-haloze.png}
+
+\simpleslide{Omrežje.}{Dinamično usmerjanje, protokoli, metrike.}{OLSR, Babel, Batman.}
+
+\simpleslide{Omrežje.}{Naprave.}{Linux, OpenWrt. \\ http://www.openwrt.org}
+
+\simpleslide{$\sim$ 1000 geografsko razpršenih točk.}{Naprave. Konfiguracija. Postavitev.}{Upravljanje omrežja.}
+
+\simpleslide{Upravljanje omrežja.}{\huge \nodewatcher}{Razširljiva platforma za upravljanje \\ velikih (brezžičnih) mesh omrežij.}
+
+\simpleslideimage{clipart/device-mgmt-cycle.pdf}{Cikel postavitve naprav.}
+
+\simpleslideimage{images/shema.png}{Konfiguracija. Neodvisna od platforme. \\ }
+
+\simpleslide{Firmware.}{Transformacija konfiguracije.}{Generator.}
+
+\simpleslide{}{Postavitev.}{}
+
+\fullslideimage{images/solar-1.jpg}
+
+\fullslideimage{images/solar-2.jpg}
+
+\fullslideimage{images/neubergerjeva.jpg}
+
+\fullslideimage{images/glinska.jpg}
+
+\fullslideimage{images/rozmanova-1.jpg}
+
+\fullslideimage{images/rozmanova-2.jpg}
+
+\fullslideimage{images/urban.jpg}
+
+\fullslideimage{images/linkslatinaurban06.jpg}
+
+\fullslideimage{images/PohorjeTestiranje.png}
+
+\fullslideimage{images/koruza-ijs-teslova-4.jpg}
+
+\simpleslide{Nadzor.}{Podatki.}{Skladnost s konfiguracijo. \\ Samodejno odkrivanje napak v omrežju.}
+
+\simpleslide{Pridobivanje podatkov.}{nodewatcher-agent (JSON), \\ SNMP, \\ ...}{Modularna platforma.}
+
+\simpleslide{Vse le ne gre brez žic.}{{\huge \textit{Tunneldigger}} \\ {...in zakaj ne OpenVPN?}}{L2TPv3 broker in odjemalec.}
+
+\simpleslide{Tunneldigger. Layer 2 pseudo-wire.}{Context switchi, kopiranje. \\ L2TPv3 podpora v Linux jedru.}{NAT, PMTU, ...}
+
+\simpleslide{Kompleksnost postavitve?}{Docker kontejnerji.}{Za vse komponente platforme.}
+
+\subtitle{https://wlan-si.net \\ jernej@kos.mx}
+\date[]{}
+
+\maketitle
+
+\end{document}

@@ -1,4 +1,4 @@
-all: 000-intro.pdf 001-kaj-je-wlan-slovenija.pdf 002-brezzicne-komunikacije.pdf 003-wifi-racunalniska-omrezja.pdf 004-popularne-brezzicne-komunikacije.pdf
+all: wlansi-sinog-slides.pdf
 
 %.pdf: %.tex VERSION.tex
 	pdflatex -interaction=batchmode "$<"
