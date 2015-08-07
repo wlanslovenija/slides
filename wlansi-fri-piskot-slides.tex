@@ -18,6 +18,9 @@
 \usepackage{ifthen}
 \usepackage{type1ec}
 \usepackage{concrete}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,decorations.pathreplacing,decorations.text,shapes,calc,fit}
+
 \DeclareFontFamily{T1}{ccr}{}
 \DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
 \DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
@@ -100,13 +103,20 @@
 
 \title{Omrežje \wlanslovenija}
 
-\subtitle{Jernej Kos \\ SINOG 1.5}
+\subtitle{Jernej Kos \\ Piškot FRI}
 
 %\author{}
 
 %\institute{}
 
-\date[]{4.12.2014}
+\date[]{5.3.2015}
+
+\tikzstyle{vertex}=[circle,text=blue!75,fill=blue!25,minimum size=20pt,inner sep=0pt]
+\tikzstyle{selected vertex} = [vertex, fill=red!24, text=red]
+\tikzstyle{edge} = [draw=black,thick,-]
+\tikzstyle{weight} = [font=\scriptsize]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
+\tikzstyle{destination} = [vertex,fill=orange!24, text=orange]
 
 \begin{document}
 
@@ -122,39 +132,89 @@
 omrežja po Sloveniji, temelječega na sodelovanju, \\
 izmenjavi znanja in izkušenj ter skupnosti.}{}
 
+%TODO primerjava s tradicionalnim pristopom
 \simpleslide{Organska rast omrežne infrastrukture.}{Izzivi.}{Koordinacija skupnosti.}
 
 \simpleslide{Omrežje.}{Mesh omrežje.}{Brezžično mesh omrežje.}
 
-\simpleslide{Omrežje.}{Povezljivost na katerikoli možen način.}{WiFi, Ethernet, L2TPv3, KORUZA...}
+\simpleslide{Mesh omrežje.}{
 
-\fullslideimage{clipart/shema-podolgovata.png}
+\begin{tikzpicture}[scale=1.1,auto,swap]
+  \foreach \pos / \name in {{(0,2)/a}, {(2,1)/b}, {(4,1)/c},
+                            {(0,0)/d}, {(3,0)/e}, {(2,-1)/f}}
+    \node[vertex] (\name) at \pos {$\name$};
+  
+  \node[vertex] (g) at (4,-1) {$g$};
+  
+  % Connect vertices with edges
+  \foreach \source / \dest in {b/a, c/b, d/a, d/b,
+                               e/b, e/c, e/d,
+                               f/d, f/e, g/e, g/f}
+      \path[edge] (\source) -- (\dest);
+\end{tikzpicture}
+
+}{Peer-to-peer.}
 
 \fullslideimage{images/network_topology.png}
+
+\simpleslide{Omrežje.}{Povezljivost na katerikoli možen način.}{WiFi, Ethernet, L2TPv3, KORUZA...}
 
 \fullslideimage{images/node-map-slovenia.png}
 
 \fullslideimage{images/node-map-haloze.png}
 
-\simpleslide{Omrežje.}{Dinamično usmerjanje, protokoli, metrike.}{OLSR, Babel, Batman.}
+\simpleslide{Omrežje.}{Dinamično usmerjanje, protokoli.}{OLSR, Babel, BATMAN, BMX6, 802.11s.}
+
+\simpleslide{Najkvalitetnejša pot med točkama $a$ in $g$.}{
+
+\begin{tikzpicture}[scale=1.8,auto,swap]
+  \foreach \pos / \name in {{(0,2)/a}, {(2,1)/b}, {(4,1)/c},
+                            {(0,0)/d}, {(3,0)/e}, {(2,-1)/f}}
+    \node[vertex] (\name) at \pos {$\name$};
+  
+  \node[destination] (g) at (4,-1) {$g$};
+  
+  % Connect vertices with edges and draw weights
+  \foreach \source / \dest / \weight in {b/a/$1.0$, c/b/$1.0$, d/a/$1.21$, d/b/$2.33$,
+                                         e/b/$2.17$, e/c/$2.43$, e/d/$1.87$,
+                                         f/d/$7.81$, f/e/$3.20$,
+                                         g/e/$2.01$, g/f/$1.12$}
+      \path[edge] (\source) -- node[weight] {$\weight$} (\dest);
+  
+  \foreach \vertex in {a,d,e}
+    \path<2-> node[selected vertex] at (\vertex) {$\vertex$};
+  
+  \begin{pgfonlayer}{background}
+    \foreach \source / \dest in {a/d,d/e,e/g}
+      \path<2->[selected edge] (\source.center) -- (\dest.center);
+  \end{pgfonlayer}
+\end{tikzpicture}
+
+}{}
+
+\simpleslide{Brezžično omrežje.}{Metrike.}{ETX, ETT, RTT.}
+
+\simpleslideimage{images/battlemeshv8_logo.png}{Protokoli, metrike. Kateri je ``boljši''? \\ http://battlemesh.org/}
 
 \simpleslide{Omrežje.}{Naprave.}{Linux, OpenWrt. \\ http://www.openwrt.org}
+
+\simpleslideimage{images/wr741nd-4v20-4.jpg}{}
+
+\simpleslideimage{images/aggregator.jpg}{}
 
 \simpleslide{$\sim$ 1000 geografsko razpršenih točk.}{Naprave. Konfiguracija. Postavitev.}{Upravljanje omrežja.}
 
 \simpleslide{Upravljanje omrežja.}{\huge \nodewatcher}{Razširljiva platforma za upravljanje \\ velikih (brezžičnih) mesh omrežij.}
 
-\simpleslideimage{clipart/device-mgmt-cycle.pdf}{Cikel postavitve naprav.}
+\simpleslideimage{clipart/device-mgmt-cycle.pdf}{Cikel upravljanja naprav.}
 
-\simpleslideimage{images/shema.png}{Konfiguracija. Neodvisna od platforme. \\ }
+\simpleslide{}{Konfiguracija.}{Neodvisna od platforme.}
 
 \simpleslide{Firmware.}{Transformacija konfiguracije.}{Generator.}
 
+\fullslideimage{images/firmware-buildsystem.pdf}
+
 \simpleslide{}{Postavitev.}{}
-
-\fullslideimage{images/solar-1.jpg}
-
-\fullslideimage{images/solar-2.jpg}
 
 \fullslideimage{images/neubergerjeva.jpg}
 
@@ -166,21 +226,35 @@ izmenjavi znanja in izkušenj ter skupnosti.}{}
 
 \fullslideimage{images/urban.jpg}
 
+\fullslideimage{images/urban2.jpg}
+
 \fullslideimage{images/linkslatinaurban06.jpg}
 
 \fullslideimage{images/PohorjeTestiranje.png}
+
+\fullslideimage{images/solar-1.jpg}
+
+\fullslideimage{images/solar-2.jpg}
 
 \fullslideimage{images/koruza-ijs-teslova-4.jpg}
 
 \simpleslide{Nadzor.}{Podatki.}{Skladnost s konfiguracijo. \\ Samodejno odkrivanje napak v omrežju.}
 
-\simpleslide{Pridobivanje podatkov.}{nodewatcher-agent (JSON), \\ SNMP, \\ ...}{Modularna platforma.}
+\simpleslide{Pridobivanje podatkov.}{nodewatcher-agent, \\ SNMP, \\ ...}{Modularna platforma.}
+
+\fullslideimage{images/monitoring-pipeline.pdf}
+
+\fullslideimage{images/datastream-storage.pdf}
+
+\fullslideimage{images/datastream-counter-reset.pdf}
+
+\fullslideimage{images/implementation-interactive-visualization.png}
 
 \simpleslide{Vse le ne gre brez žic.}{{\huge \textit{Tunneldigger}} \\ {...in zakaj ne OpenVPN?}}{L2TPv3 broker in odjemalec.}
 
-\simpleslide{Tunneldigger. Layer 2 pseudo-wire.}{Context switchi, kopiranje. \\ L2TPv3 podpora v Linux jedru.}{NAT, PMTU, ...}
+%TODO slika s shemo vpn?
 
-\simpleslide{Kompleksnost postavitve?}{Docker kontejnerji.}{Za vse komponente platforme.}
+\simpleslide{Tunneldigger. Layer 2 pseudo-wire.}{Context switchi, kopiranje. \\ L2TPv3 podpora v Linux jedru.}{NAT, PMTU, ...}
 
 \subtitle{https://wlan-si.net \\ jernej@kos.mx}
 \date[]{}
