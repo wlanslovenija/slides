@@ -1,5 +1,5 @@
-Slides for *wlan slovenija* presentation on SINOG (Slovenian)
-=============================================================
+Slides for *wlan slovenija* presentation on FRI Piskot (Slovenian)
+==================================================================
 
 You can use ``make`` to generate PDFs of slides.
 
