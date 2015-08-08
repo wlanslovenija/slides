@@ -1,4 +1,4 @@
-all: wlansi-sinog-slides.pdf
+all: nodewatcher-slides.pdf
 
 %.pdf: %.tex VERSION.tex
 	pdflatex -interaction=batchmode "$<"
