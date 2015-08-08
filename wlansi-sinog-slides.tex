@@ -134,84 +134,19 @@
 
 \fullslideimage{images/node-map-haloze.png}
 
-\simpleslide{Omrežje.}{Dinamično usmerjanje, protokoli.}{OLSR, Babel, BATMAN, BMX6, 802.11s.}
+\simpleslide{Network management.}{\huge \nodewatcher}{Modular platform for management of \\ big (wireless) mesh networks.}
 
-\simpleslide{Najkvalitetnejša pot med točkama $a$ in $g$.}{
+\simpleslideimage{clipart/device-mgmt-cycle.pdf}{Cycle of node management.}
 
-\begin{tikzpicture}[scale=1.8,auto,swap]
-  \foreach \pos / \name in {{(0,2)/a}, {(2,1)/b}, {(4,1)/c},
-                            {(0,0)/d}, {(3,0)/e}, {(2,-1)/f}}
-    \node[vertex] (\name) at \pos {$\name$};
-  
-  \node[destination] (g) at (4,-1) {$g$};
-  
-  % Connect vertices with edges and draw weights
-  \foreach \source / \dest / \weight in {b/a/$1.0$, c/b/$1.0$, d/a/$1.21$, d/b/$2.33$,
-                                         e/b/$2.17$, e/c/$2.43$, e/d/$1.87$,
-                                         f/d/$7.81$, f/e/$3.20$,
-                                         g/e/$2.01$, g/f/$1.12$}
-      \path[edge] (\source) -- node[weight] {$\weight$} (\dest);
-  
-  \foreach \vertex in {a,d,e}
-    \path<2-> node[selected vertex] at (\vertex) {$\vertex$};
-  
-  \begin{pgfonlayer}{background}
-    \foreach \source / \dest in {a/d,d/e,e/g}
-      \path<2->[selected edge] (\source.center) -- (\dest.center);
-  \end{pgfonlayer}
-\end{tikzpicture}
+\simpleslide{}{Configuration.}{Platform independent.}
 
-}{}
-
-\simpleslide{Brezžično omrežje.}{Metrike.}{ETX, ETT, RTT.}
-
-\simpleslideimage{images/battlemeshv8_logo.png}{Protokoli, metrike. Kateri je ``boljši''? \\ http://battlemesh.org/}
-
-\simpleslide{Omrežje.}{Naprave.}{Linux, OpenWrt. \\ http://www.openwrt.org}
-
-\simpleslideimage{images/wr741nd-4v20-4.jpg}{}
-
-\simpleslideimage{images/aggregator.jpg}{}
-
-\simpleslide{$\sim$ 1000 geografsko razpršenih točk.}{Naprave. Konfiguracija. Postavitev.}{Upravljanje omrežja.}
-
-\simpleslide{Upravljanje omrežja.}{\huge \nodewatcher}{Razširljiva platforma za upravljanje \\ velikih (brezžičnih) mesh omrežij.}
-
-\simpleslideimage{clipart/device-mgmt-cycle.pdf}{Cikel upravljanja naprav.}
-
-\simpleslide{}{Konfiguracija.}{Neodvisna od platforme.}
-
-\simpleslide{Firmware.}{Transformacija konfiguracije.}{Generator.}
+\simpleslide{Firmware.}{Configuration transformation.}{Generator.}
 
 \fullslideimage{images/firmware-buildsystem.pdf}
 
-\simpleslide{}{Postavitev.}{}
+\simpleslide{Monitoring.}{Data.}{Configuration matching. \\ Automatic detection of errors in the network.}
 
-\fullslideimage{images/neubergerjeva.jpg}
-
-\fullslideimage{images/glinska.jpg}
-
-\fullslideimage{images/rozmanova-1.jpg}
-
-\fullslideimage{images/rozmanova-2.jpg}
-
-\fullslideimage{images/urban.jpg}
-
-\fullslideimage{images/urban2.jpg}
-
-\fullslideimage{images/linkslatinaurban06.jpg}
-
-\fullslideimage{images/PohorjeTestiranje.png}
-
-\fullslideimage{images/solar-1.jpg}
-
-\fullslideimage{images/solar-2.jpg}
-
-\fullslideimage{images/koruza-ijs-teslova-4.jpg}
-
-\simpleslide{Nadzor.}{Podatki.}{Skladnost s konfiguracijo. \\ Samodejno odkrivanje napak v omrežju.}
-
-\simpleslide{Pridobivanje podatkov.}{nodewatcher-agent, \\ SNMP, \\ ...}{Modularna platforma.}
+\simpleslide{Data gathering.}{nodewatcher-agent, \\ SNMP, \\ ...}{Modular as well.}
 
 \fullslideimage{images/monitoring-pipeline.pdf}
 
@@ -221,13 +156,11 @@
 
 \fullslideimage{images/implementation-interactive-visualization.png}
 
-\simpleslide{Vse le ne gre brez žic.}{{\huge \textit{Tunneldigger}} \\ {...in zakaj ne OpenVPN?}}{L2TPv3 broker in odjemalec.}
+\simpleslide{Not all only wirelessly.}{{\huge \textit{Tunneldigger}} \\ {...why not OpenVPN?}}{L2TPv3 broker and client.}
 
-%TODO slika s shemo vpn?
+\simpleslide{Tunneldigger. Layer 2 pseudo-wire.}{Context switch, copying. \\ L2TPv3 support in Linux kernel.}{NAT, PMTU, ...}
 
-\simpleslide{Tunneldigger. Layer 2 pseudo-wire.}{Context switchi, kopiranje. \\ L2TPv3 podpora v Linux jedru.}{NAT, PMTU, ...}
-
-\subtitle{https://wlan-si.net \\ jernej@kos.mx}
+\subtitle{https://wlan-si.net \\ jernej@kos.mx, mitar@tnode.com}
 \date[]{}
 
 \maketitle
