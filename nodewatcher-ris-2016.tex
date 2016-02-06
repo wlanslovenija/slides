@@ -1,0 +1,169 @@
+\documentclass[]{beamer}
+\mode<presentation>
+{
+% use attribute "dark" for dark theme
+% use attribute "contrast" for maximum text contrast
+\usetheme[]{wlansi}
+\usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent}
+}  
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage{xmpmulti}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{cmap}
+\usepackage{ifthen}
+\usepackage{type1ec}
+\usepackage{concrete}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,decorations.pathreplacing,decorations.text,shapes,calc,fit}
+
+\DeclareFontFamily{T1}{ccr}{}
+\DeclareFontShape{T1}{ccr}{m}{n}{<5><6><7><8><9><10>gen*eorm<10->eorm10}{}
+\DeclareFontShape{T1}{ccr}{m}{sl}{<5><6><7><8><9><10>gen*eosl<10->eosl10}{}
+\DeclareFontShape{T1}{ccr}{m}{it}{<->eoti10}{}
+\DeclareFontShape{T1}{ccr}{m}{sc}{<->eocc10}{}
+\DeclareFontShape{T1}{ccr}{bx}{n}{<->ssub*cmr/bx/n}{}
+\DeclareFontShape{T1}{ccr}{bx}{sl}{<->ssub*cmr/bx/sl}{}
+\DeclareFontShape{T1}{ccr}{bx}{it}{<->ssub*cmr/bx/it}{}
+\DeclareFontShape{T1}{ccr}{sbc}{n}{<->ssubf*ecssdc10}{}
+\usepackage[T1]{fontenc}
+\renewcommand{\sfdefault}{\rmdefault}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\bfdefault}{m}
+\newcommand{\nodewatcher}{\emph{nodewatcher }}
+\newcommand{\wlanslovenija}{\emph{wlan slovenija}}
+
+\newcommand{\ifstrempty}[3]{%
+\def\reallyempty{}%
+\def\ifarg{#1}%
+\ifx\ifarg\reallyempty%
+{#2}
+\else
+{#3}
+\fi%
+}
+
+\newcommand{\wrapframe}[1]{
+\begin{frame}
+ #1
+\end{frame}
+}
+
+\newenvironment{changemargin}[2]{%
+\begin{list}{}{%
+\setlength{\topsep}{0pt}%
+\setlength{\leftmargin}{#1}%
+\setlength{\rightmargin}{#2}%
+\setlength{\listparindent}{\parindent}%
+\setlength{\itemindent}{\parindent}%
+\setlength{\parsep}{\parskip}%
+}%
+\item[]}{\end{list}}
+
+\newcommand{\simpleslide}[3]{\wrapframe{
+\ifstrempty{#1}{\vbox{ \ } 
+
+}{
+{\footnotesize #1}
+} \vfill
+
+\begin{center}
+#2
+\end{center}
+\vfill
+\ifstrempty{#3}{ \ }{
+\begin{flushright}
+{\footnotesize #3}
+\end{flushright}
+}
+}}
+
+\newcommand{\simpleslideimage}[2]{\wrapframe{
+\begin{center}
+\includegraphics[width=0.8\paperwidth,height=0.6\paperheight,keepaspectratio]{#1}
+\\ {\footnotesize #2}
+\end{center}}
+}
+
+\newcommand{\fullslideimage}[1]{
+\begin{frame}[plain]
+\begin{changemargin}{-1cm}{-1cm}
+\begin{center}
+\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}
+\end{center}
+\end{changemargin}
+\end{frame}
+}
+
+\newcommand{\rightfooter}[1]{\vfill\hfill #1}
+
+\title{\nodewatcher}
+
+\subtitle{Jernej Kos \\ RIS 2016}
+
+%\author{}
+
+%\institute{}
+
+\date[]{6.2.2016}
+
+\tikzstyle{vertex}=[circle,text=blue!75,fill=blue!25,minimum size=20pt,inner sep=0pt]
+\tikzstyle{selected vertex} = [vertex, fill=red!24, text=red]
+\tikzstyle{edge} = [draw=black,thick,-]
+\tikzstyle{weight} = [font=\scriptsize]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
+\tikzstyle{destination} = [vertex,fill=orange!24, text=orange]
+
+\begin{document}
+
+% makes a title slide
+\maketitle
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+
+\simpleslide{Upravljanje omrežja.}{Odprtokodna razširljiva platforma za \\ upravljanje velikih (brezžičnih) omrežij.}{Razvita v okviru projekta \wlanslovenija.}
+
+\simpleslide{Kaj platforma obsega?}{Enotna konfiguracija naprav. \\ Priprava firmwarea za naprave. \\ Monitoring naprav v omrežju.}{Podpora skupnosti pri upravljanju omrežja.}
+
+\simpleslideimage{clipart/device-mgmt-cycle.pdf}
+
+\simpleslide{}{Konfiguracija naprav.}{Neodvisna od platforme.}
+
+\fullslideimage{images/nodewatcher-seznam-naprav.png}
+\fullslideimage{images/nodewatcher-konfiguracija-naprave.png}
+\fullslideimage{images/nodewatcher-konfiguracija-naprave-2.png}
+\fullslideimage{images/nodewatcher-konfiguracija-naprave-3.png}
+\fullslideimage{images/nodewatcher-konfiguracija-naprave-4.png}
+
+\simpleslide{Priprava firmwarea.}{Transformacija konfiguracije \\ za ciljno platformo.}{Generator.}
+
+\fullslideimage{images/firmware-buildsystem.pdf}
+\fullslideimage{images/nodewatcher-firmware-build.png}
+
+\simpleslide{Nadgradnja točk.}{\texttt{\$ nodeupgrade 15a53f54-8088-4c58-a509-9f90d3717655}}{To je vse.}
+
+\simpleslide{Monitoring naprav.}{Podatki. Veliko podatkov.}{Skladnost s konfiguracijo. \\ Samodejno odkrivanje napak v omrežju.}
+
+\simpleslide{Nekaj številk iz postavitve v \wlanslovenija.}{1276 usmerjevalnikov \\ 1.366.726.186 meritev \\ 348 GiB meritev (brez kompresije)}
+
+\simpleslide{Pridobivanje podatkov.}{nodewatcher-agent, \\ SNMP, \\ ...}{Modularna platforma.}
+
+\fullslideimage{images/monitoring-pipeline.pdf}
+
+\fullslideimage{images/implementation-interactive-visualization.png}
+
+\simpleslide{KORUZA.}{Za spremljanje delovanja enot.}{Modularna platforma.}
+
+\fullslideimage{images/nodewatcher-koruza-meritve.png}
+
+\subtitle{https://wlan-si.net \\ jernej@kos.mx}
+\date[]{}
+
+\maketitle
+
+\end{document}
